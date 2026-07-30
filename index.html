@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hiring Prediction System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>AI Hiring Predictor</h1>
+        <form id="prediction-form">
+            <div class="form-group">
+                <label for="experience">Experience (Years):</label>
+                <input type="number" id="experience" required>
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary Expectation ($):</label>
+                <input type="number" id="salary" required>
+            </div>
+            <div class="form-group">
+                <label for="projects">Projects Count:</label>
+                <input type="number" id="projects" required>
+            </div>
+            <div class="form-group">
+                <label for="ai_score">AI Score (0-100):</label>
+                <input type="number" id="ai_score" required>
+            </div>
+            <div class="form-group">
+                <label for="education">Education:</label>
+                <select id="education" required>
+                    <option value="B.Sc">B.Sc</option>
+                    <option value="B.Tech">B.Tech</option>
+                    <option value="MBA">MBA</option>
+                    <option value="M.Tech">M.Tech</option>
+                    <option value="PhD">PhD</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="job_role">Job Role:</label>
+                <select id="job_role" required>
+                    <option value="AI Researcher">AI Researcher</option>
+                    <option value="Data Scientist">Data Scientist</option>
+                    <option value="Cybersecurity Analyst">Cybersecurity Analyst</option>
+                    <option value="Software Engineer">Software Engineer</option>
+                </select>
+            </div>
+            <button type="submit">Predict Hiring Outcome</button>
+        </form>
+        
+        <div id="result" class="hidden">
+            <h2>Outcome: <span id="prediction-text"></span></h2>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

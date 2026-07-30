@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hiring Intelligence Platform</title>
+    <meta name="description" content="AI-powered hiring prediction system with advanced machine learning for smarter recruitment decisions.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='script.css') }}">
+</head>
+<body>
+
+    <!-- ═══ Custom Cursor ═══ -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
+    <!-- ═══ Toast Container ═══ -->
+    <div id="toast-container"></div>
+
+    <!-- ═══ Confetti Canvas ═══ -->
+    <canvas id="confetti-canvas"></canvas>
+
+    <!-- ═══ 3D Neural Net Canvas ═══ -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- ═══ Animated Orbs ═══ -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- ═══ Main Layout ═══ -->
+    <div class="page-wrapper">
+
+        <!-- ── Header ── -->
+        <header class="site-header">
+            <div class="logo-mark">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="18" stroke="url(#logoGrad)" stroke-width="2"/>
+                        <path d="M12 20 L20 12 L28 20 L20 28 Z" fill="url(#logoGrad)" opacity="0.8"/>
+                        <circle cx="20" cy="20" r="4" fill="white"/>
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0" y1="0" x2="40" y2="40">
+                                <stop offset="0%" stop-color="#a855f7"/>
+                                <stop offset="100%" stop-color="#3b82f6"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <span class="logo-text">HireAI</span>
+            </div>
+            <nav class="header-nav">
+                <a href="#features" class="nav-link">Features</a>
+                <a href="#form-card" class="nav-link">Predict</a>
+            </nav>
+            <div class="header-badge">
+                <span class="pulse-dot"></span>
+                <span>ML Model Active</span>
+            </div>
+        </header>
+
+        <!-- ── Hero Section ── -->
+        <section class="hero-section">
+            <div class="hero-tag">
+                <span class="tag-icon">⚡</span>
+                <span>Powered by Advanced Machine Learning</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="title-line">Intelligent</span>
+                <span class="title-line gradient-text" id="typewriter-text"></span>
+            </h1>
+            <p class="hero-sub">Submit candidate metrics and let our AI model deliver an instant, data-driven hiring decision with precision scoring.</p>
+            <div class="hero-cta-row">
+                <a href="#form-card" class="cta-primary">
+                    <span>Start Analysis</span>
+                    <span class="cta-arrow">↓</span>
+                </a>
+                <a href="#features" class="cta-ghost">How it works</a>
+            </div>
+        </section>
+
+        <!-- ── Animated Stats Row ── -->
+        <div class="stats-row">
+            <div class="stat-pill">
+                <span class="stat-num" data-target="98.4" data-suffix="%" data-decimal="1">0%</span>
+                <span class="stat-label">Accuracy</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-pill">
+                <span class="stat-num" data-target="6" data-suffix="">0</span>
+                <span class="stat-label">Parameters</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-pill">
+                <span class="stat-num" data-target="500" data-suffix="+" data-prefix="">0</span>
+                <span class="stat-label">Predictions Made</span>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat-pill">
+                <span class="stat-num" data-target="99" data-suffix="ms">&lt;1s</span>
+                <span class="stat-label">Inference Time</span>
+            </div>
+        </div>
+
+        <!-- ── Feature Cards Section ── -->
+        <section class="features-section" id="features">
+            <div class="section-label">
+                <span class="section-label-line"></span>
+                <span>Why HireAI</span>
+                <span class="section-label-line"></span>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card" data-delay="0">
+                    <div class="feature-card-glow"></div>
+                    <div class="feature-icon-wrap">
+                        <span class="feature-icon">🧠</span>
+                    </div>
+                    <h3 class="feature-title">Neural Prediction</h3>
+                    <p class="feature-desc">Trained on thousands of hiring decisions, our model learns the subtle patterns behind successful placements.</p>
+                    <div class="feature-tag">ML-Powered</div>
+                </div>
+                <div class="feature-card" data-delay="100">
+                    <div class="feature-card-glow"></div>
+                    <div class="feature-icon-wrap">
+                        <span class="feature-icon">⚡</span>
+                    </div>
+                    <h3 class="feature-title">Instant Results</h3>
+                    <p class="feature-desc">Get a complete hiring analysis with confidence scores, role fit percentages, and ranking — all in under a second.</p>
+                    <div class="feature-tag">Real-Time</div>
+                </div>
+                <div class="feature-card" data-delay="200">
+                    <div class="feature-card-glow"></div>
+                    <div class="feature-icon-wrap">
+                        <span class="feature-icon">🎯</span>
+                    </div>
+                    <h3 class="feature-title">Role-Specific AI</h3>
+                    <p class="feature-desc">Predictions adapt to the target job role and education level, ensuring context-aware accuracy for every candidate.</p>
+                    <div class="feature-tag">Adaptive</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Candidate Strength Meter ── -->
+        <div class="strength-meter-wrap" id="strength-meter-wrap">
+            <div class="strength-header">
+                <span class="strength-title">
+                    <span class="strength-icon">📊</span>
+                    Live Candidate Strength
+                </span>
+                <span class="strength-score" id="strength-score">—</span>
+            </div>
+            <div class="strength-track">
+                <div class="strength-fill" id="strength-fill"></div>
+                <div class="strength-markers">
+                    <span>Weak</span>
+                    <span>Average</span>
+                    <span>Strong</span>
+                    <span>Elite</span>
+                </div>
+            </div>
+            <div class="strength-badges" id="strength-badges"></div>
+        </div>
+
+        <!-- ── Main Form Card ── -->
+        <div class="form-card" id="form-card">
+            <div class="card-border-glow"></div>
+            <div class="card-glow"></div>
+
+            <!-- Form Progress Bar -->
+            <div class="form-progress-wrap">
+                <div class="form-progress-bar" id="form-progress-bar"></div>
+                <span class="form-progress-label" id="form-progress-label">0 / 6 fields</span>
+            </div>
+
+            <div class="card-header">
+                <h2 class="card-title">Candidate Profile</h2>
+                <span class="card-subtitle">Fill all 6 fields for an accurate AI prediction</span>
+            </div>
+
+            <form id="prediction-form" autocomplete="off">
+
+                <!-- Row 1 -->
+                <div class="field-grid">
+                    <div class="field-group" data-field="experience">
+                        <label for="experience">
+                            <span class="field-icon">🕐</span>
+                            Experience (Years)
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="number" id="experience" placeholder="e.g. 5" min="0" max="40" required>
+                            <div class="input-bar"></div>
+                        </div>
+                    </div>
+                    <div class="field-group" data-field="salary">
+                        <label for="salary">
+                            <span class="field-icon">💰</span>
+                            Salary Expectation ($)
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="number" id="salary" placeholder="e.g. 85000" min="0" required>
+                            <div class="input-bar"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 2 -->
+                <div class="field-grid">
+                    <div class="field-group" data-field="projects">
+                        <label for="projects">
+                            <span class="field-icon">🗂️</span>
+                            Projects Count
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="number" id="projects" placeholder="e.g. 12" min="0" required>
+                            <div class="input-bar"></div>
+                        </div>
+                    </div>
+                    <div class="field-group" data-field="ai_score">
+                        <label for="ai_score">
+                            <span class="field-icon">🧠</span>
+                            AI Score (0–100)
+                        </label>
+                        <div class="input-wrapper">
+                            <input type="number" id="ai_score" placeholder="e.g. 78" min="0" max="100" required>
+                            <div class="input-bar"></div>
+                        </div>
+                        <div class="score-bar-wrap" id="score-bar-wrap">
+                            <div class="score-bar-fill" id="score-bar-fill"></div>
+                            <span class="score-bar-label" id="score-bar-label"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Row 3 -->
+                <div class="field-grid">
+                    <div class="field-group" data-field="education">
+                        <label for="education">
+                            <span class="field-icon">🎓</span>
+                            Education
+                        </label>
+                        <div class="select-wrapper">
+                            <select id="education" required>
+                                <option value="" disabled selected>Select degree</option>
+                                <option value="B.Sc">B.Sc</option>
+                                <option value="B.Tech">B.Tech</option>
+                                <option value="MBA">MBA</option>
+                                <option value="M.Tech">M.Tech</option>
+                                <option value="PhD">PhD</option>
+                            </select>
+                            <span class="select-arrow">▾</span>
+                        </div>
+                    </div>
+                    <div class="field-group" data-field="job_role">
+                        <label for="job_role">
+                            <span class="field-icon">💼</span>
+                            Job Role
+                        </label>
+                        <div class="select-wrapper">
+                            <select id="job_role" required>
+                                <option value="" disabled selected>Select role</option>
+                                <option value="AI Researcher">AI Researcher</option>
+                                <option value="Data Scientist">Data Scientist</option>
+                                <option value="Cybersecurity Analyst">Cybersecurity Analyst</option>
+                                <option value="Software Engineer">Software Engineer</option>
+                            </select>
+                            <span class="select-arrow">▾</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submit-btn" class="submit-btn">
+                    <span class="btn-text">Analyze Candidate</span>
+                    <span class="btn-icon">→</span>
+                    <div class="btn-shimmer"></div>
+                    <div class="btn-loader hidden">
+                        <div class="ai-scan-wrap">
+                            <div class="ai-scan-ring r1"></div>
+                            <div class="ai-scan-ring r2"></div>
+                            <div class="ai-scan-ring r3"></div>
+                            <span class="ai-scan-label">Analyzing…</span>
+                        </div>
+                    </div>
+                </button>
+
+            </form>
+        </div>
+
+        <!-- ── Result Panel ── -->
+        <div id="result-panel" class="result-panel hidden">
+            <div class="result-inner">
+                <div class="result-icon-wrap" id="result-icon-wrap">
+                    <div class="result-icon-ring"></div>
+                    <span class="result-icon" id="result-icon">✓</span>
+                </div>
+                <div class="result-content">
+                    <p class="result-label">Prediction Outcome</p>
+                    <h2 class="result-verdict" id="prediction-text"></h2>
+                    <p class="result-message" id="result-message"></p>
+                </div>
+                <div class="result-metrics" id="result-metrics">
+                    <div class="metric-card" id="metric-confidence">
+                        <div class="metric-arc-wrap">
+                            <svg class="metric-arc" viewBox="0 0 60 60">
+                                <circle cx="30" cy="30" r="24" stroke="rgba(255,255,255,0.06)" stroke-width="4" fill="none"/>
+                                <circle class="arc-fill" cx="30" cy="30" r="24" stroke="url(#arcGrad)" stroke-width="4" fill="none"
+                                        stroke-linecap="round" stroke-dasharray="150.8" stroke-dashoffset="150.8"
+                                        transform="rotate(-90 30 30)"/>
+                                <defs>
+                                    <linearGradient id="arcGrad" x1="0" y1="0" x2="1" y2="0">
+                                        <stop offset="0%" stop-color="#a855f7"/>
+                                        <stop offset="100%" stop-color="#3b82f6"/>
+                                    </linearGradient>
+                                </defs>
+                            </svg>
+                            <span class="metric-val">—</span>
+                        </div>
+                        <span class="metric-name">Confidence</span>
+                    </div>
+                    <div class="metric-card" id="metric-rank">
+                        <span class="metric-val">—</span>
+                        <span class="metric-name">AI Rank</span>
+                    </div>
+                    <div class="metric-card" id="metric-fit">
+                        <span class="metric-val">—</span>
+                        <span class="metric-name">Role Fit</span>
+                    </div>
+                </div>
+
+                <!-- Breakdown Bar Chart -->
+                <div class="breakdown-section" id="breakdown-section">
+                    <p class="breakdown-title">Parameter Breakdown</p>
+                    <div class="breakdown-bars" id="breakdown-bars"></div>
+                </div>
+
+                <button class="rerun-btn" id="rerun-btn">
+                    <span>← Analyze Another</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ── History Panel ── -->
+        <div class="history-panel" id="history-panel">
+            <div class="history-header">
+                <span class="history-title">
+                    <span>🕘</span> Recent Predictions
+                </span>
+                <button class="history-clear" id="history-clear">Clear</button>
+            </div>
+            <div class="history-list" id="history-list">
+                <p class="history-empty">No predictions yet. Submit a candidate above.</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="site-footer">
+            <span>© 2026 HireAI Intelligence Platform</span>
+            <span class="footer-dot">·</span>
+            <span>Built with Flask + ML</span>
+            <span class="footer-dot">·</span>
+            <span>v2.0</span>
+        </footer>
+
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
