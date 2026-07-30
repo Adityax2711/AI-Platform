@@ -1,0 +1,26 @@
+# ── Large binaries ──
+ngrok.exe
+ngrok.zip
+
+# ── Python cache ──
+__pycache__/
+*.py[cod]
+*.pyo
+.env
+venv/
+.venv/
+
+# ── OS files ──
+.DS_Store
+Thumbs.db
+
+# ── IDE ──
+.vscode/
+.idea/
+
+# ── Data / notebooks ──
+*.csv
+*.ipynb
+
+# ── Logs ──
+*.log
